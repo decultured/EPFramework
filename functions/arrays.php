@@ -112,6 +112,16 @@ function array_key_multi_sort_objects(&$arr, $l , $f='strnatcasecmp') {
 	return usort($arr, create_function('$a, $b', "return $f(\$a->$l, \$b->$l);"));
 }
 
+function array_key_values($arr, $key) {
+	$values = array();
+	
+	foreach($arr as $row) {
+		$values[] = $row->$key;
+	}
+	
+	return $values;
+}
+
 function array_max_multi($array, $key) {
 	array_key_multi_sort($array, $key);
 	

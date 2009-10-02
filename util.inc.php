@@ -14,17 +14,9 @@ function dump($var = null, $die = true, $format = '') {
 	}
 	
 	if(g('framework') != null && g('framework')->getRunMode() == 'web') { echo "<pre>"; }
-	if(is_array($var) == true && $format == 'csv') {
-		if(is_array($var[0]) == true) {
-			foreach($var as $row) {
-				echo implode(', ', $row) . "\n";
-			}
-		} else {
-			echo implode(', ', $var) . "\n";
-		}
-	} else {
-		var_dump($var);
-	}
+	
+	var_dump($var);
+	
 	if(g('framework') != null && g('framework')->getRunMode() == 'web') { echo "</pre>"; }
 	
 	if($die == true) { die(); }
