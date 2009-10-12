@@ -49,9 +49,9 @@ class Framework {
 		//////////////////////////////////////////////////////////
 		// disable IE caching, its broken like everything else	//
 		//////////////////////////////////////////////////////////
-		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-		header("Cache-Control: no-cache, must-revalidate");
-		header("Pragma: no-cache");
+		@header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+		@header("Cache-Control: no-cache, must-revalidate");
+		@header("Pragma: no-cache");
 		
 		if(ObjectCache('template') != null) {
 			$_CONFIG = ObjectCache('config');
@@ -131,7 +131,7 @@ class Framework {
 	}
 	
 	function returnUrl_Base64($url = '') {
-		return urlsafe_b64decode($url);
+		return urlsafe_b64encode(absolutize_url($url));
 	}
 	
 	function base64Encode($string = null) {

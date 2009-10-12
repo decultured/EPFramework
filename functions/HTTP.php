@@ -92,6 +92,10 @@ function absolutize_url($url, $add_return_path = false) {
 		$new_url .= "?{$url_parts['query']}";
 	}
 	
+	if(array_safe_value($url_parts, 'fragment', null) != null) {
+		$new_url .= "#{$url_parts['fragment']}";
+	}
+	
 	// dump($new_url);
 	return $new_url;
 }
