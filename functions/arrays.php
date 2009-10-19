@@ -116,7 +116,7 @@ function array_key_values($arr, $key) {
 	$values = array();
 	
 	foreach($arr as $row) {
-		$values[] = $row->$key;
+		$values[] = (is_array($row) == true ? $row[$key] : $row->$key);
 	}
 	
 	return $values;
