@@ -243,10 +243,10 @@ class MysqlDatabase {
 			$whereFieldList = array();
 			foreach($where_clause as $key => $value) {
 				$key = $this->EscapeFieldName($key);
-				
+				$value = $this->EscapeData($value);
 				$whereFieldList[] = "{$key} = '{$value}'";
 			}
-			$sqlQuery .= " Where(".implode(", ", $whereFieldList).")";
+			$sqlQuery .= " Where(".implode(") And (", $whereFieldList).")";
 		}
 		
 		return $this->Update($sqlQuery);
@@ -260,11 +260,11 @@ class MysqlDatabase {
 		$value_list = array();
 		foreach($data_array as $key => $value) {
 			$key = $this->EscapeFieldName($key);
-			
+			$value = $this->EscapeData($value);
 			$whereFieldList[] = "{$key} = '{$this->EscapeData($value)}'";
 		}
 		
-		$sqlQuery = "Delete From {$table_name} Where(". implode(" And ", $value_list) .")";
+		$sqlQuery = "Delete From {$table_name} Where(". implode(") And (", $value_list) .")";
 		
 		return $this->Update($sqlQuery);
 	}
